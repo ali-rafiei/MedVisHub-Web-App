@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Processor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <button id="menuButton" class="menu-button">☰</button>
+
+  <div id="sidebar" class="sidebar">
+    <div class="menu-items">
+      <div class="menu-item" data-view="original">
+        <i class="fas fa-image"></i> Original <span class="shortcut">1</span>
+      </div>
+      <div class="menu-item" data-view="enhanced">
+        <i class="fas fa-adjust"></i> Enhanced <span class="shortcut">2</span>
+      </div>
+      <div class="menu-item" data-view="processed">
+        <i class="fas fa-magic"></i> Processed <span class="shortcut">3</span>
+      </div>
+      <div class="menu-item" data-view="split">
+        <i class="fas fa-columns"></i> Split View <span class="shortcut">4</span>
+      </div>
+      <div class="menu-item" data-action="zoom-in">
+        <i class="fas fa-search-plus"></i> Zoom In <span class="shortcut">=</span>
+      </div>
+      <div class="menu-item" data-action="zoom-out">
+        <i class="fas fa-search-minus"></i> Zoom Out <span class="shortcut">-</span>
+      </div>
+      <div class="menu-item" data-action="reset-zoom">
+        <i class="fas fa-sync-alt"></i> Reset Zoom <span class="shortcut">0</span>
+      </div>
+      <div id="clearButton" class="menu-item">
+        <i class="fas fa-trash"></i> Clear <span class="shortcut">Back/Del</span>
+      </div>
+
+      <!-- Hidden by default, shown only in Split View -->
+      <div id="splitSelectContainer" class="hidden">
+        <label for="leftImageSelect">Left Image:</label>
+        <select id="leftImageSelect">
+          <option value="original">Original</option>
+          <option value="enhanced">Enhanced</option>
+          <option value="processed">Processed</option>
+          <option value="upload">Upload Your Own Image</option>
+        </select>
+
+        <label for="rightImageSelect">Right Image:</label>
+        <select id="rightImageSelect">
+          <option value="original">Original</option>
+          <option value="enhanced">Enhanced</option>
+          <option value="processed">Processed</option>
+          <option value="upload">Upload Your Own Image</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div id="uploadArea" class="upload-area">
+      <div class="upload-box">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <p>Click to upload an image or drag and drop</p>
+        <input type="file" id="imageUpload" accept="image/*" class="hidden" />
+      </div>
+    </div>
+
+    <div id="imageDisplayArea" class="image-display-area hidden">
+      <img id="originalImage" class="fullscreen-image hidden" alt="Original Image Loading" />
+      <img id="enhancedImage" class="fullscreen-image hidden" alt="Enhanced Image Loading..." />
+      <img id="processedImage" class="fullscreen-image hidden" alt="Processed Image Loading..." />
+
+      <div id="splitView" class="split-view hidden">
+        <div class="split-image-container">
+          <img id="splitImageLeft" alt="Split View Left" />
+        </div>
+        <div class="split-image-container">
+          <img id="splitImageRight" alt="Split View Right" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
